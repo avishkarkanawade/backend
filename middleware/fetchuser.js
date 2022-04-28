@@ -1,12 +1,13 @@
 var jwt = require('jsonwebtoken');
 
-const JWT_SECRET="noteapp"
+const JWT_SECRET = "youareawesome&";
 
-const fetchuser= (req,res, next)=>{
+const fetchuser =(req,res, next ) =>{
+
     const token = req.header('auth-token');
-
+    
     if(!token){
-        return res.status(401).json({ errors: "Invalid Credentials" });
+        return res.status(401).send({ errors: "invalid credentials" });
     }
 
     try{
@@ -17,10 +18,8 @@ const fetchuser= (req,res, next)=>{
     }catch (error) {
         console.log(error.mesage);
         res.status(500).json({ errors: "some error occured" });
-    }
-
+      }
 }
 
 
-
-module.exports = fetchuser;
+module.exports = fetchuser
